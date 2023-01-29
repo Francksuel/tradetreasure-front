@@ -1,12 +1,12 @@
 import { useContext, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate, Link } from 'react-router-dom';
+import logo from '../assets/LogoTradeTreasure.png';
+import AuthLayout from '../styles/Auth/Auth';
 
-import AuthLayout from '../layouts/Auth';
-
-import { Input } from '../components/Form/Input';
-import { Button } from '../components/Form/Button';
-import { Row, Label } from '../components/Auth';
+import { Input } from '../styles/Form/Input';
+import { Button } from '../styles/Form/Button';
+import { Row } from '../styles/Auth';
 
 import useSignIn from '../hooks/api/useSignIn';
 import UserContext from '../contexts/UserContext';
@@ -34,8 +34,8 @@ export default function SignIn() {
 
   return (
     <AuthLayout>
+      <img src={logo} alt="logo" />
       <Row>
-        <Label>Inscrição</Label>
         <form onSubmit={submit}>
           <Input
             placeholder="Nickname"
@@ -57,7 +57,9 @@ export default function SignIn() {
         </form>
       </Row>
       <Row>
-        <Link to="/">Don't have a registration? Create an account! </Link>
+        <Link to="/">
+          <h3>Don't have a registration? Create an account!</h3>
+        </Link>
       </Row>
     </AuthLayout>
   );

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export default styled.div`
-  background: red;
+  background: #000000;
   background-size: cover;
   min-height: 100vh;
   width: 100%;
@@ -10,10 +10,17 @@ export default styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  font-size: 48px;
+  font-size: 20px;  
+  h3{
+    color: white;
+  }
+
+  img{
+    width: 200px;    
+  }
 
   & > *:not(:last-child) {
-    margin-bottom: 24px;
+    margin-bottom: 24px;    
   }
 
   & > * {

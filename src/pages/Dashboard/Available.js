@@ -1,3 +1,3 @@
-export default function Available(){
-    return <h2>Available</h2>
+export default function Available() {
+  return <h2>Available</h2>;
 }

@@ -2,11 +2,12 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate, Link } from 'react-router-dom';
 
-import AuthLayout from '../layouts/Auth';
+import AuthLayout from '../styles/Auth/Auth';
+import logo from '../assets/LogoTradeTreasure.png';
 
-import { Input } from '../components/Form/Input';
-import { Button } from '../components/Form/Button';
-import { Row, Label } from '../components/Auth';
+import { Input } from '../styles/Form/Input';
+import { Button } from '../styles/Form/Button';
+import { Row } from '../styles/Auth';
 
 import useSignUp from '../hooks/api/useSignUp';
 
@@ -38,8 +39,8 @@ export default function SignUp() {
 
   return (
     <AuthLayout>
+      <img src={logo} alt="logo" />
       <Row>
-        <Label>Inscrição</Label>
         <form onSubmit={submit}>
           <Input
             placeholder="Nickname"
@@ -64,12 +65,14 @@ export default function SignUp() {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
           <Button type="submit" color="primary" fullWidth disabled={loadingSignUp}>
-            Inscrever
+            Cadaster
           </Button>
         </form>
       </Row>
       <Row>
-        <Link to="/sign-in">Já está inscrito? Faça login</Link>
+        <Link to="/sign-in">
+          <h3>Do you already have an account? Log in!</h3>
+        </Link>
       </Row>
     </AuthLayout>
   );
