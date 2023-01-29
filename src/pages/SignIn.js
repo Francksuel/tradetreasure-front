@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate, Link } from 'react-router-dom';
 
@@ -9,19 +9,22 @@ import { Button } from '../components/Form/Button';
 import { Row, Label } from '../components/Auth';
 
 import useSignIn from '../hooks/api/useSignIn';
+import UserContext from '../contexts/UserContext';
 
 export default function SignIn() {
   const [nickname, setNickname] = useState('');
   const [password, setPassword] = useState('');
 
   const { loadingSignIn, signIn } = useSignIn();
+  const { setUserData } = useContext(UserContext);
 
   const navigate = useNavigate();
 
   async function submit(event) {
     event.preventDefault();
     try {
-      await signIn(nickname, password);
+      const userData = await signIn(nickname, password);
+      setUserData(userData);
       toast('Login com sucesso!');
       navigate('/dashboard');
     } catch (error) {
