@@ -5,6 +5,8 @@ import { ResultSearch } from '../../styles/Dashboard/Wanted/ResultSearch';
 import SearchResult from '../../components/Dashboard/Wanted/SearchResult';
 import { useEffect, useState } from 'react';
 import { getItem } from '../../services/getItemApi';
+import useGetWantedItens from '../../hooks/api/useWantedItem';
+import MapItens from '../../components/Dashboard/Wanted/MapItens';
 
 export default function Wanted() {
   const [search, setSearch] = useState('');
@@ -16,7 +18,7 @@ export default function Wanted() {
       return setHiddenSearch(true);
     }
     getItem(search)
-      .then((res) => {        
+      .then((res) => {
         setItensSearch(res);
         setHiddenSearch(false);
       })
@@ -25,6 +27,12 @@ export default function Wanted() {
       });
   }, [search]);
 
+  function renderWantedItens() {
+    const { wantedItem } = useGetWantedItens();
+    if (!wantedItem) return [];    
+    return <MapItens itens={wantedItem} />;
+  }
+
   return (
     <>
       <WrapperSearch onClick={() => setHiddenSearch(false)}>
@@ -32,16 +40,12 @@ export default function Wanted() {
           minLength={3}
           debounceTimeout={300}
           placeholder="Search for pokemon"
-          
           value={search}
-          style={{  
-            placeholderTextColor: 'red',
+          style={{
             backgroundColor: '#D9D9D9',
-            color: '#000000',            
-            fontSize: '3vw'           
-          }
-          }
-          
+            color: '#000000',
+            fontSize: '3vw',
+          }}
           onChange={(e) => setSearch(e.target.value)}
           type="text"
         />
@@ -54,7 +58,6 @@ export default function Wanted() {
           size={20}
         />
       </WrapperSearch>
-
       <ResultSearch disabled={hiddenSearch}>
         {itensSearch
           ? itensSearch.map((value, index) => (
@@ -68,6 +71,7 @@ export default function Wanted() {
           ))
           : ''}
       </ResultSearch>
+      {renderWantedItens()}
     </>
   );
 }

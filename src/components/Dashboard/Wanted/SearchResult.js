@@ -1,8 +1,22 @@
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
+import usePostWantedItem from '../../../hooks/api/useCreateWantedItem';
 
 export default function SearchResult({ image, name, itemId, setHiddenSearch }) {
+  const { postWantedItem } = usePostWantedItem();
+
+  function sendWantedItem(itemId) {
+    try {
+      postWantedItem({ pokemonId: itemId });
+      setHiddenSearch(true);
+      toast('Successfully selected!');
+    } catch {
+      toast('An error occurred while selecting this item!');
+    }
+  }
+
   return (
-    <Container onClick={() => setHiddenSearch(true)}>
+    <Container onClick={() => sendWantedItem(itemId)}>
       <img src={image} alt="img" />
       <h4>{name}</h4>
     </Container>
@@ -37,10 +51,10 @@ const Container = styled.div`
       line-height: 4vw;
     }
     img {
-    height: 6vw;
-    width: 6vw;
-    border-radius: 50%;
-    margin-right: 3vw;
-  }
+      height: 6vw;
+      width: 6vw;
+      border-radius: 50%;
+      margin-right: 3vw;
+    }
   }
 `;
