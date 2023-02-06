@@ -8,6 +8,7 @@ import { getItem } from '../../services/getItemApi';
 import useGetAvailableItens from '../../hooks/api/useAvailableItem';
 import MapItens from '../../components/Dashboard/Item/MapItens';
 import usePostAvailableItem from '../../hooks/api/useCreateAvailableItem';
+import useDeleteAvailableItem from '../../hooks/api/useDeleteAvailableItem';
 
 export default function Available() {
   const [search, setSearch] = useState('');
@@ -16,6 +17,7 @@ export default function Available() {
   const { postAvailableItem } = usePostAvailableItem();
   const { availableItem, getAvailableItens } = useGetAvailableItens();
   const [itens, setItens] = useState(availableItem ? availableItem : []);
+  const { deleteAvailableItem } = useDeleteAvailableItem();
 
   useEffect(() => {
     getAvailableItens().then((res) => {
@@ -73,7 +75,7 @@ export default function Available() {
           ))
           : ''}
       </ResultSearch>
-      <MapItens itens={itens} />
+      <MapItens itens={itens} deleteItem={deleteAvailableItem}/>
     </>
   );
 }

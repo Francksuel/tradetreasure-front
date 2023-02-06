@@ -19,6 +19,8 @@ export const ItemCardLayout = styled.div`
     height: 9vw;
   }
   h2 {
-    font-size: 2.5vw;
+    font-size: 2.2vw;
+    font-weight: 700;
+    color: #642121;
   }  
 `;

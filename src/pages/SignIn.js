@@ -25,10 +25,10 @@ export default function SignIn() {
     try {
       const userData = await signIn(nickname, password);
       setUserData(userData);
-      toast('Login com sucesso!');
+      toast('Login successfully!');
       navigate('/dashboard');
     } catch (error) {
-      toast('Não foi possível fazer o login!');
+      toast('Unable to login!');
     }
   }
 

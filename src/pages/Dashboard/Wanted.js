@@ -8,12 +8,14 @@ import { getItem } from '../../services/getItemApi';
 import useGetWantedItens from '../../hooks/api/useWantedItem';
 import MapItens from '../../components/Dashboard/Item/MapItens';
 import usePostWantedItem from '../../hooks/api/useCreateWantedItem';
+import useDeleteWantedItem from '../../hooks/api/useDeleteWantedItem';
 
 export default function Wanted() {
   const [search, setSearch] = useState('');
   const [itensSearch, setItensSearch] = useState([]);
   const [hiddenSearch, setHiddenSearch] = useState(true);
   const { postWantedItem } = usePostWantedItem();
+  const { deleteWantedItem } = useDeleteWantedItem();
   const { wantedItem, getWantedItens } = useGetWantedItens();
   const [itens, setItens] = useState(wantedItem ? wantedItem : []);
 
@@ -73,7 +75,7 @@ export default function Wanted() {
           ))
           : ''}
       </ResultSearch>
-      <MapItens itens={itens} />
+      <MapItens itens={itens} deleteItem={deleteWantedItem} />
     </>
   );
 }

@@ -23,12 +23,12 @@ export const TradeCardLayout = styled.div`
     height: 9vw;
   }
   h2 {
-    font-size: 2.5vw;
+    font-size: 2vw;
     color: #642121;
     font-weight: 700;
   }  
   h3{
-    font-size: 2vw;
+    font-size: 1.7vw;
     color: #523737;    
   }
 `;

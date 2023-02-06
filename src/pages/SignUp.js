@@ -29,10 +29,10 @@ export default function SignUp() {
     } else {
       try {
         await signUp(nickname, password, code);
-        toast('Inscrito com sucesso! Por favor, faça login.');
+        toast('Successfully enrolled! Please log in.');
         navigate('/sign-in');
       } catch (error) {
-        toast('Não foi possível fazer o cadastro!');
+        toast('Unable to register!');
       }
     }
   }

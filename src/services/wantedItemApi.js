@@ -17,3 +17,12 @@ export async function getWantedItens(token) {
   });
   return response.data;
 }
+
+export async function deleteWantedItem(itemId, token) {
+  const response = await api.delete(`/wanted/${itemId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+}

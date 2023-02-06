@@ -4,7 +4,7 @@ export const Button = styled.button`
   font-family: "Oswald", sans-serif;
   height: 65px;
   width: 100%;
-  background-color: #1877f2;
+  background-color: #852B2B;
   border-radius: 6px;
   outline: none;
   border: none;

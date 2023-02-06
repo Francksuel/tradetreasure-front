@@ -17,3 +17,12 @@ export async function getAvailableItens(token) {
   });
   return response.data;
 }
+
+export async function deleteAvailableItem(itemId, token) {
+  const response = await api.delete(`/available/${itemId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+}

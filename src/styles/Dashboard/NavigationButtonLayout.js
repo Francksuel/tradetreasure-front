@@ -24,6 +24,7 @@ export const NavigationButtonStyle = styled.button`
   & > *:first-child {
     font-size: 3.5vw;
     color: #000000;
+    font-weight: 700;
   }
 
   @media (min-width: 770px) {
