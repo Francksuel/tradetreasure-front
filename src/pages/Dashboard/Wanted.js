@@ -1,22 +1,29 @@
 import { DebounceInput } from 'react-debounce-input';
-import { WrapperSearch } from '../../styles/Dashboard/Wanted/WrapperSearch';
+import { WrapperSearch } from '../../styles/Dashboard/Item/WrapperSearch';
 import { BsSearch } from 'react-icons/bs';
-import { ResultSearch } from '../../styles/Dashboard/Wanted/ResultSearch';
-import SearchResult from '../../components/Dashboard/Wanted/SearchResult';
+import { ResultSearch } from '../../styles/Dashboard/Item/ResultSearch';
+import SearchResult from '../../components/Dashboard/Item/SearchResult';
 import { useEffect, useState } from 'react';
 import { getItem } from '../../services/getItemApi';
 import useGetWantedItens from '../../hooks/api/useWantedItem';
-import MapItens from '../../components/Dashboard/Wanted/MapItens';
+import MapItens from '../../components/Dashboard/Item/MapItens';
+import usePostWantedItem from '../../hooks/api/useCreateWantedItem';
 
 export default function Wanted() {
   const [search, setSearch] = useState('');
   const [itensSearch, setItensSearch] = useState([]);
   const [hiddenSearch, setHiddenSearch] = useState(true);
+  const { postWantedItem } = usePostWantedItem();
+  const { wantedItem, getWantedItens } = useGetWantedItens();
+  const [itens, setItens] = useState(wantedItem ? wantedItem : []);
 
   useEffect(() => {
+    getWantedItens().then((res) => {
+      setItens(res);
+    }); 
     if (search.length < 3) {
       return setHiddenSearch(true);
-    }
+    }      
     getItem(search)
       .then((res) => {
         setItensSearch(res);
@@ -25,13 +32,7 @@ export default function Wanted() {
       .catch(() => {
         setHiddenSearch(true);
       });
-  }, [search]);
-
-  function renderWantedItens() {
-    const { wantedItem } = useGetWantedItens();
-    if (!wantedItem) return [];    
-    return <MapItens itens={wantedItem} />;
-  }
+  }, [search, itens]);
 
   return (
     <>
@@ -63,15 +64,16 @@ export default function Wanted() {
           ? itensSearch.map((value, index) => (
             <SearchResult
               key={index}
-              setHiddenSearch={setHiddenSearch}
               image={value.image}
               name={value.name}
               itemId={value.id}
+              setSearch={setSearch}
+              postItem={postWantedItem}
             />
           ))
           : ''}
       </ResultSearch>
-      {renderWantedItens()}
+      <MapItens itens={itens} />
     </>
   );
 }

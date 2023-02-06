@@ -5,16 +5,16 @@ export const NavigationButtonStyle = styled.button`
   height: 12vw;
   border: 1px solid black;
   border-radius: 0px 0px 5px 5px;
-  background-color: #4277ff;
+  background-color: #B0B7B6;
   cursor: pointer;
 
   display: flex;
   justify-content: center;
   align-items: center;
-  ${(props) => (props.active ? 'background-color: #B6F6F3;' : '')}
+  ${(props) => (props.active ? 'background-color: #ECF0F9;' : '')}
 
   &:hover {
-    background-color: #b6f6f3;
+    background-color: #ECF0F9;
   }
 
   & > *:not(:last-child) {

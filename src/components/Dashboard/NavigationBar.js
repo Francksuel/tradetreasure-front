@@ -42,7 +42,6 @@ const Container = styled.div`
   background-color: transparent;
   box-shadow: 2px 0 10px 0 rgba(0, 0, 0, 0.1);
   width: 100%;
- // flex-shrink: 0;
   justify-content: flex-start;
 
   > a {

@@ -1,22 +1,18 @@
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
-import usePostWantedItem from '../../../hooks/api/useCreateWantedItem';
 
-export default function SearchResult({ image, name, itemId, setHiddenSearch }) {
-  const { postWantedItem } = usePostWantedItem();
-
-  function sendWantedItem(itemId) {
+export default function SearchResult({ image, name, itemId, setSearch, postItem }) {
+  function sendItem(itemId) {
     try {
-      postWantedItem({ pokemonId: itemId });
-      setHiddenSearch(true);
-      toast('Successfully selected!');
+      postItem({ pokemonId: itemId });  
+      setSearch('');            
+      toast('Successfully selected!');      
     } catch {
       toast('An error occurred while selecting this item!');
     }
   }
-
   return (
-    <Container onClick={() => sendWantedItem(itemId)}>
+    <Container onClick={() => sendItem(itemId)}>
       <img src={image} alt="img" />
       <h4>{name}</h4>
     </Container>

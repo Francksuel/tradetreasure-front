@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const WrapperSearch = styled.span`
   margin-left: 10vw;
-  margin-top: 13vw;
+  margin-top: 200px;
   height: 46px;
   width: 80vw;
   display: flex;
